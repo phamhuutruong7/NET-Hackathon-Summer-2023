@@ -1,0 +1,24 @@
+{
+  "stacks": [
+    {
+      "name": "env",
+      "environments": [
+        "team-e"
+      ]
+    }
+  ],
+  "version": "2",
+  "tenantId": "dd86b424-e113-4950-9434-f9f9a176286d",
+  "subscriptionId": "8819bc93-8169-487d-8ae6-68d0dedadd84",
+  "resourceGroupName": "afws-ws23-rg-pulumi",
+  "location": "westeurope",
+  "teamGroupObjectIdList": [
+    "df5c5437-e318-445b-82aa-bad186c8d030"
+  ],
+  "customerName": "Appsfactory",
+  "customerShort": "afws",
+  "projectName": "NET-Workshop-2023-Team-E",
+  "projectShort": "ws23",
+  "enableKeyVaultPerProject": false,
+  "enableSingleStateStorage": true
+}

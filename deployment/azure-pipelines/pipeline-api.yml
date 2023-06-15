@@ -1,0 +1,56 @@
+trigger:
+  branches:
+    include:
+      - develop
+      - main
+  paths:
+    include:
+      - src/*
+      - deployment/azure-pipelines/pipeline-api.yml
+
+resources:
+  - repo: self
+
+variables:
+  - group: SampleKeyVaultVariableGroup
+  - group: SampleVariableGroup
+  - name: LocalVariable
+    value: "Hello World"
+  # ----------------------
+  - name: imageRepository
+    value: "team-e"
+  - name: containerRegistry
+    value: "afwsws23registryadmin.azurecr.io"
+  - name: dockerfilePath
+    value: "src/Dockerfile"
+  - name: dockerfileContext
+    value: "src"
+  - name: buildNumber
+    value: "$(Build.BuildNumber)"
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+  - bash: |
+      source deployment/azure-pipelines/modules/package.sh
+    name: package
+    displayName: Build Docker Image
+    env:
+      APP_NAME: $(imageRepository)
+      APP_VERSION: $(buildNumber)
+      DOCKER_FILE: $(dockerfilePath)
+      BUILD_CONTEXT: $(dockerfileContext) 
+
+  - task: AzureCLI@2
+    name: push
+    displayName: Push Docker Image
+    condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
+    inputs:
+      azureSubscription: "Azure-ServiceConnection"
+      scriptType: "pscore"
+      scriptLocation: "scriptPath"
+      scriptPath: "deployment/azure-pipelines/modules/push.ps1"
+      arguments: '$(containerRegistry) $(imageRepository) $(buildNumber)'
+      addSpnToEnvironment: true
+      failOnStandardError: true

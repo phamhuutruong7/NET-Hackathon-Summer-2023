@@ -1,0 +1,20 @@
+{
+  "name": "pulumi-appsfactory",
+  "version": "1.0.0",
+  "description": "Pulumi library intended for internal use",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^10.0.0"
+  },
+  "dependencies": {
+    "@pulumi/azure-native": "^1.54.0",
+    "@pulumi/azuread": "^5.14.0",
+    "@pulumi/pulumi": "^3.23.0",
+    "@pulumi/random": "^4.3.1"
+  }
+}
