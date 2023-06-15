@@ -15,17 +15,17 @@ public class WeatherRecommendationApplication: IWeatherRecommendationApplication
         _recommender = recommender;
     }
 
-    public async Task<string> GetRecommendations(string zip, CancellationToken cancellationToken)
+    public async Task<List<string>> GetRecommendations(string zip, CancellationToken cancellationToken)
     {
         WeatherResponseDto? weather = await _openWeatherClient.GetWeather(zip, cancellationToken);
         if (weather is null)
         {
-            return "No recommendations for you, sorry.";
+            return new List<string> { "No recommendations for you, sorry." };
         }
 
-        //return
-        //    $"Hi, What should I wear if outside is {weather?.Weather?.FirstOrDefault()?.Description} and it is {weather?.Main?.Temperature} degrees Celsius.";
+        var recommendationsString = await _recommender.GetCarryOnRecommendationAsync(weather);
+        var recommendations = recommendationsString.Split("\n\n");
 
-        return await _recommender.GetCarryOnRecommendationAsync(weather);
+        return recommendations.ToList();
     }
 }

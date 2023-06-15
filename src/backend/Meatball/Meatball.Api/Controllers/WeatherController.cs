@@ -18,7 +18,7 @@ public class WeatherController : ControllerBase
     [HttpGet("recommendations")]
     public async Task<IActionResult> Get(string zipCode, CancellationToken cancellationToken)
     {
-        var response = await _weatherRecommendation.GetRecommendations(zipCode, cancellationToken);
+        List<string> response = await _weatherRecommendation.GetRecommendations(zipCode, cancellationToken);
         return Ok(response);
     }
 }
