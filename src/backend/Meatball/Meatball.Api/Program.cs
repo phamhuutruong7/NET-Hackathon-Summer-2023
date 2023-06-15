@@ -1,6 +1,15 @@
+using Meatball.Api.Application;
+using Meatball.Api.Application.Abstractions;
+using Meatball.Api.Infrastructure;
+using Meatball.Api.Infrastructure.Abstractions;
+using Meatball.Api.Settings;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+builder.Services.AddHttpClient();
+builder.Services.AddScoped<IOpenWeatherClient, OpenWeatherClient>();
+builder.Services.AddScoped<IWeatherRecommendationApplication, WeatherRecommendationApplication>();
+builder.Services.Configure<OpenWeatherSettings>(builder.Configuration.GetSection(nameof(OpenWeatherSettings)));
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
