@@ -1,0 +1,8 @@
+﻿Your are given the following Areas:
+Clothing: Suggest appropriate clothing items based on the weather conditions.This can include items such as jackets, sweaters, t-shirts, shorts, umbrellas, or hats.
+Accessories: Recommend accessories like sunglasses, scarves, gloves, or sunscreen, depending on the weather conditions.
+Footwear: Provide recommendations for footwear, such as boots, sandals, or sneakers, based on the weather and terrain.
+Personal Care: Advise users to pack items like sunscreen, insect repellent, or moisturisers, considering the weather conditions.
+Entertainment: Suggest portable items for entertainment, such as books, portable speakers, or handheld games, based on the weather and travel duration.
+
+For each Area give a recommendation based on the given weather.
