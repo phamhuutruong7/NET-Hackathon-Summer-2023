@@ -42,7 +42,7 @@ export default {
       this.loading = true;
       this.recommendations = [];
       axios
-      .get(`https://localhost:7132/Weather/recommendations?zipCode=${this.zipcode}`)
+      .get(`https://afws-ws23-webapp-ws23-team-e.azurewebsites.net/Weather/recommendations?zipCode=${this.zipcode}`)
       .then(response => {
         this.loading = false;
         this.recommendations = response.data;
