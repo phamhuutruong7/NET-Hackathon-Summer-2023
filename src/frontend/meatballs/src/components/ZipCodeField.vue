@@ -22,13 +22,12 @@ export default {
   data() {
     return {
       zipcode: '',
-      recommendations
+      recommendations: ''
     };
   },
   methods: {
     fetchRecommendations() {
       fetch('http://localhost:8000', {
-        method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
