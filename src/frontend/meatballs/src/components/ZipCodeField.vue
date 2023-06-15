@@ -27,7 +27,7 @@ export default {
   },
   methods: {
     fetchRecommendations() {
-      fetch(`weather/recommendations/${zipcode}`)
+      fetch(`/Weather/recommendations?zipCode=${this.zipcode}`)
         .then(response => {
           if (response.ok) {
             return response.text
