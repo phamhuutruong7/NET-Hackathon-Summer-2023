@@ -28,16 +28,4 @@ export default {
     }
   }
 }
-// export default {
-//   data() {
-//     return {
-//       title: getTitle()
-//     };
-//   },
-//   methods: {
-//     getTitle() {
-//       console.log(this.text)
-//     }
-//   }
-// }
 </script>
