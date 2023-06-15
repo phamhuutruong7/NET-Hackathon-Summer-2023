@@ -18,6 +18,7 @@
 </style>
 
 <script>
+import axios from 'axios'
 export default {
   data() {
     return {
@@ -27,21 +28,14 @@ export default {
   },
   methods: {
     fetchRecommendations() {
-      fetch(`/Weather/recommendations?zipCode=${this.zipcode}`)
-        .then(response => {
-          if (response.ok) {
-            return response.text
-          } else {
-            throw new Error('Could not fetch recommendations')
-          }
-        }).then(
-          response => {
-            this.recommendations = response
-          }
-        )
-        .catch(error => {
-          this.recommendations = error
-        });
+      axios
+      .get(`https://localhost:7132/Weather/recommendations?zipCode=${this.zipcode}`)
+      .then(response => {
+        this.recommendations = response.data
+      })
+      .catch(error => {
+        this.recommendations = "Something went wrong. Please try again later-";
+      })
     }
   }
 }
