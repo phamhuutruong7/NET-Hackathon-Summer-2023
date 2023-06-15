@@ -7,7 +7,9 @@
     <h2>Weather based recommendations for entertainment and transportation</h2>
 
     <input type="text" v-model="zipcode" placeholder="ZIP code" minlength="5" maxlength="5" required><br />
-    <button type="button" @click="printZipCode()">Let's go</button>
+    <button type="button" @click="fetchRecommendations()">Let's go</button>
+
+    <div>{{ recommendations }}</div>
   </div>
 </template>
 
@@ -19,13 +21,33 @@
 export default {
   data() {
     return {
-      zipcode: ''
+      zipcode: '',
+      recommendations
     };
   },
   methods: {
-    printZipCode() {
-      console.log(this.zipcode);
-      // You can do whatever you want with the value here
+    fetchRecommendations() {
+      fetch('http://localhost:8000', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ zipcode: this.zipcode })
+      })
+        .then(response => {
+          if (response.ok) {
+            return response.text
+          } else {
+            throw new Error('Could not fetch recommendations')
+          }
+        }).then(
+          response => {
+            this.recommendations = response
+          }
+        )
+        .catch(error => {
+          // Handle request error
+        });
     }
   }
 }
