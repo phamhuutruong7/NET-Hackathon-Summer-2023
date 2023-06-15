@@ -1,20 +1,21 @@
 <script setup>
+import Recommendation from './Recommendation.vue';
 </script>
 
 <template>
-  
-  <div class="card">
-    <h1>⛅ Meatballs</h1>
-    <h2>Weather based recommendations for entertainment and transportation</h2>
+  <div class="input-group mb-3" v-if="!loading">
+    <input type="text" class="form-control" v-model="zipcode" placeholder="Please enter your ZIP code" minlength="5" maxlength="5" required>
+    <button class="btn btn-primary" type="button" @click="fetchRecommendations()">Let's go</button>
+  </div>
 
-    <input v-if="!loading" type="text" v-model="zipcode" placeholder="ZIP code" minlength="5" maxlength="5" required><br />
-    <button v-if="!loading" type="button" @click="fetchRecommendations()">Let's go</button>
+  <pulse-loader :loading="loading"></pulse-loader>
 
-    <pulse-loader :loading="loading"></pulse-loader>
-
-    <li v-for="item in recommendations">
-      {{ item }}
-    </li>
+  <div class="container text-center">
+    <div class="row align-items-center">
+      <div class="col" v-for="item in recommendations">
+        <Recommendation :text=item />
+      </div>
+    </div>
   </div>
 </template>
 
