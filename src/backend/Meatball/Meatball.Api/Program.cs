@@ -33,12 +33,8 @@ var app = builder.Build();
 var openAiService = app.Services.GetRequiredService<IOpenAIService>();
 openAiService.SetDefaultModelId(Models.ChatGpt3_5Turbo);
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+app.UseSwagger();
+app.UseSwaggerUI();
 app.UseCors("cors");
 app.UseHttpsRedirection();
 
