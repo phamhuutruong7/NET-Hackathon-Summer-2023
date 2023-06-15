@@ -272,7 +272,7 @@ FakesAssemblies/
 .ntvs_analysis.dat
 node_modules/
 transpiled
-dist/
+# dist/
 /.idea/
 
 # Visual Studio 6 build log
