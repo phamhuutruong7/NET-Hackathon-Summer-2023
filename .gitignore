@@ -437,3 +437,6 @@ $RECYCLE.BIN/
 
 ## JUNIT
 test-report.junit.xml
+
+# VScode
+.vscode
