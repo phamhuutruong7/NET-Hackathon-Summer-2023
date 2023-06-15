@@ -27,12 +27,7 @@ export default {
   },
   methods: {
     fetchRecommendations() {
-      fetch('http://localhost:8000', {
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ zipcode: this.zipcode })
-      })
+      fetch(`weather/recommendations/${zipcode}`)
         .then(response => {
           if (response.ok) {
             return response.text
@@ -45,7 +40,7 @@ export default {
           }
         )
         .catch(error => {
-          // Handle request error
+          this.recommendations = error
         });
     }
   }
